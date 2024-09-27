@@ -1,7 +1,6 @@
 import './App.css';
 import { AppShell, Burger, Center, Image, NavLink, Space, Text, Title } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useDisclosure, useHash } from '@mantine/hooks';
 import { IconBook, IconHome } from '@tabler/icons-react';
 
 import '@mantine/core/styles.css';
@@ -38,6 +37,14 @@ function FirstPost() {
 
 function App() {
   const [opened, { toggle }] = useDisclosure();
+  const [hash,] = useHash();
+
+  let mainContent;
+  if (hash === '#post-1') {
+    mainContent = <FirstPost/>;
+  } else {
+    mainContent = <HomeContent/>;
+  }
 
   return (
     <AppShell
@@ -59,24 +66,19 @@ function App() {
 
       <AppShell.Navbar p="md">
         <NavLink
-          href="/"
+          href="#home"
           label="Home"
           leftSection={<IconHome/>}
         />
         <NavLink
-          href="/post-1"
+          href="#post-1"
           label="Why is my nickname Nacho?"
           leftSection={<IconBook/>}
         />
       </AppShell.Navbar>
 
       <AppShell.Main>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<HomeContent/>}/>
-            <Route path="/post-1" element={<FirstPost/>}/>
-          </Routes>
-        </BrowserRouter>
+        {mainContent}
       </AppShell.Main>
     </AppShell>
   );
