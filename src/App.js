@@ -1,13 +1,13 @@
 import './App.css';
-import { AppShell, Burger, Center, Image, NavLink, Space, Text, Title } from '@mantine/core';
+import { AppShell, Burger, Center, Container, Image, List, NavLink, Space, Text, Title } from '@mantine/core';
 import { useDisclosure, useHash } from '@mantine/hooks';
-import { IconBook, IconHome } from '@tabler/icons-react';
+import { IconBook, IconHome, IconUserCircle } from '@tabler/icons-react';
 
 import '@mantine/core/styles.css';
 
 function HomeContent() {
   return (
-    <div>
+    <Container size="md">
       <Center>
         <Image
           radius="md"
@@ -17,13 +17,27 @@ function HomeContent() {
       </Center>
       <Space h={10}/>
       <Center>Welcome to my personal blog!</Center>
-      </div>
+      </Container>
+  )
+}
+
+function AboutMe() {
+  return (
+    <Container size="md">
+      <Title>About Me</Title>
+      <Space h="md"/>
+      <Text>
+        My name is Nathanael Cho, and I am a software developer in the finance industry with a passion for mathematics. You can click on the link below to see what I look like!
+      </Text>
+      <Space h="md"/>
+      <a href="https://www.linkedin.com/in/nathanael-a-cho/">LinkedIn</a>
+    </Container>
   )
 }
 
 function FirstPost() {
   return (
-    <div>
+    <Container size="md">
       <Title>Why is my nickname Nacho?</Title>
       <Space h="md"/>
       <Text>
@@ -31,17 +45,36 @@ function FirstPost() {
         My first initial is N, and my middle initial is A. Together
         with my last name, you get Nacho!
       </Text>
-    </div>
+      <Space h="md"/>
+      <Text>
+        It made a first appearance on my kindergarten backpack, but it didn't catch on until high school.
+      </Text>
+      <Space h="md"/>
+      <Text>Responses to common questions:</Text>
+      <List withPadding>
+        <List.Item>Yes, I like nachos.</List.Item>
+        <List.Item>Yes, I have seen <i>Nacho Libre</i>.</List.Item>
+        <List.Item>No, Nacho is not my real name by birth.</List.Item>
+      </List>
+      <Space h="md"/>
+      <Image
+        radius="md"
+        src='/nacho-eating-nachos.webp'
+        style={{width: 500}}
+      /> 
+    </Container>
   )
 }
 
 function App() {
-  const [opened, { toggle }] = useDisclosure();
+  const [opened, { close, toggle }] = useDisclosure();
   const [hash,] = useHash();
 
   let mainContent;
   if (hash === '#post-1') {
     mainContent = <FirstPost/>;
+  } else if (hash === '#about-me') {
+    mainContent = <AboutMe/>;
   } else {
     mainContent = <HomeContent/>;
   }
@@ -69,11 +102,19 @@ function App() {
           href="#home"
           label="Home"
           leftSection={<IconHome/>}
+          onClick={close}
+        />
+        <NavLink
+          href="#about-me"
+          label="About Me"
+          leftSection={<IconUserCircle/>}
+          onClick={close}
         />
         <NavLink
           href="#post-1"
-          label="Why is my nickname Nacho?"
+          label="1. Why is my nickname Nacho?"
           leftSection={<IconBook/>}
+          onClick={close}
         />
       </AppShell.Navbar>
 
