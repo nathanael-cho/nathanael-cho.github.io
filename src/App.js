@@ -1,9 +1,9 @@
-import './App.css';
 import { AppShell, Burger, Center, Container, Image, List, NavLink, Space, Text, Title } from '@mantine/core';
 import { useDisclosure, useHash } from '@mantine/hooks';
 import { IconBook, IconHome, IconUserCircle } from '@tabler/icons-react';
 
 import '@mantine/core/styles.css';
+import './App.css';
 
 function HomeContent() {
   return (
@@ -12,7 +12,7 @@ function HomeContent() {
         <Image
           radius="md"
           src='/dalle-home-page-painting.webp'
-          style={{width: 500}}
+          className='feature-image'
         />
       </Center>
       <Space h={10}/>
@@ -60,7 +60,7 @@ function FirstPost() {
       <Image
         radius="md"
         src='/nacho-eating-nachos.webp'
-        style={{width: 500}}
+        className='feature-image'
       /> 
     </Container>
   )
@@ -83,6 +83,7 @@ function App() {
     <AppShell
       header={{ height: 60 }}
       navbar={{
+        // The width is 100% when the viewport is smaller than the breakpoint
         width: 300,
         breakpoint: 'md',
         collapsed: { mobile: !opened, desktop: !opened },

@@ -1,3 +1,7 @@
 .App {
   text-align: center;
 }
+
+.feature-image {
+  width: min(500px, 100%);
+}
