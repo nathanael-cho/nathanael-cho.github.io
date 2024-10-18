@@ -1,11 +1,11 @@
-import { Container, Image, List, Space, Text, Title } from '@mantine/core';
+import { Image, List, Space, Text } from '@mantine/core';
+
+import { postFramework } from './helper';
 
 
 function FirstPost() {
-    return (
-        <Container size="md">
-            <Title>Why is my nickname Nacho?</Title>
-            <Space h="md" />
+    const content = (
+        <div>
             <Text>
                 My full name is Nathanael Andrew Cho.
                 My first initial is N, and my middle initial is A. Together
@@ -28,8 +28,10 @@ function FirstPost() {
                 src='/nacho-eating-nachos.webp'
                 className='feature-image'
             />
-        </Container>
+        </div>
     )
+    
+    return postFramework("Why is my nickname Nacho?", content);
 }
 
 

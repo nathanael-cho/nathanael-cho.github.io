@@ -1,10 +1,11 @@
 import { AppShell, Burger, NavLink } from '@mantine/core';
 import { useDisclosure, useHash } from '@mantine/hooks';
-import { IconBook, IconHome, IconUserCircle } from '@tabler/icons-react';
+import { IconBook, IconHome, IconTriangle, IconUserCircle } from '@tabler/icons-react';
 
 import Home from './pages/Home';
 import AboutMe from './pages/AboutMe';
 import FirstPost from './pages/posts/FirstPost';
+import SecondPost from './pages/posts/SecondPost';
 
 import '@mantine/core/styles.css';
 import './App.css';
@@ -13,6 +14,8 @@ import './App.css';
 function getContent(hash) {
   if (hash === '#post-1') {
     return <FirstPost />;
+  } else if (hash === '#post-2') {
+    return <SecondPost />;
   } else if (hash === '#about-me') {
     return <AboutMe />;
   } else {
@@ -61,6 +64,12 @@ function App() {
           href="#post-1"
           label="1. Why is my nickname Nacho?"
           leftSection={<IconBook />}
+          onClick={close}
+        />
+        <NavLink
+          href="#post-2"
+          label="2. The Research Triangle"
+          leftSection={<IconTriangle />}
           onClick={close}
         />
       </AppShell.Navbar>
