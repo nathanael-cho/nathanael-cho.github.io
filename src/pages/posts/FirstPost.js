@@ -22,12 +22,6 @@ function FirstPost() {
                 <List.Item>Yes, I have seen <i>Nacho Libre</i>.</List.Item>
                 <List.Item>No, Nacho is not my real name by birth.</List.Item>
             </List>
-            <Space h="md" />
-            <Image
-                radius="md"
-                src='/nacho-eating-nachos.webp'
-                className='feature-image'
-            />
         </div>
     )
     
