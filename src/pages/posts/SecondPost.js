@@ -8,7 +8,7 @@ function SecondPost() {
         <div>
             <p>
                 As per Wikipedia:
-                </p>
+            </p>
             <p>    
                 "The Research Triangle [is a nickname] for a
                 metropolitan area in the Piedmont region of the U.S. state of
@@ -50,7 +50,7 @@ function SecondPost() {
             <p>
                 Let <Latex>$a = (x_a, y_a), b = (x_b, y_b), x_3 = (x_c, y_c)$</Latex> be
                 the three points. To start, we choose to move <Latex>$a$</Latex>.
-                Cue the hand wave! We immediately notice that there are only two
+                We immediately notice that there are only two
                 places <Latex>$a$</Latex> can move to such that the triangle is equilateral.
             </p>
 

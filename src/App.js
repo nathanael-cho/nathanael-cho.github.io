@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import AboutMe from './pages/AboutMe';
 import FirstPost from './pages/posts/FirstPost';
 import SecondPost from './pages/posts/SecondPost';
+import ThirdPost from './pages/posts/ThirdPost';
 
 import '@mantine/core/styles.css';
 import './App.css';
@@ -16,6 +17,8 @@ function getContent(hash) {
     return <FirstPost />;
   } else if (hash === '#post-2') {
     return <SecondPost />;
+  } else if (hash === '#post-3') {
+    return <ThirdPost />;
   } else if (hash === '#about-me') {
     return <AboutMe />;
   } else {
@@ -33,7 +36,7 @@ function App() {
       header={{ height: 60 }}
       navbar={{
         // The width is 100% when the viewport is smaller than the breakpoint
-        width: 300,
+        width: 400,
         breakpoint: 'md',
         collapsed: { mobile: !opened, desktop: !opened },
       }}
@@ -68,7 +71,13 @@ function App() {
         />
         <NavLink
           href="#post-2"
-          label="2. The Research Triangle"
+          label="2. The Research Triangle (Part 1)"
+          leftSection={<IconTriangle />}
+          onClick={close}
+        />
+        <NavLink
+          href="#post-3"
+          label="2. The Research Triangle (Part 2)"
           leftSection={<IconTriangle />}
           onClick={close}
         />
