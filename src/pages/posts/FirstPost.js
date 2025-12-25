@@ -1,4 +1,4 @@
-import { Image, List, Space, Text } from '@mantine/core';
+import { List, Space, Text } from '@mantine/core';
 
 import { postFramework } from './helper';
 
