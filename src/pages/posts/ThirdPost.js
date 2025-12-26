@@ -1,9 +1,21 @@
+import { useEffect, useState } from 'react';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { coy } from 'react-syntax-highlighter/dist/esm/styles/prism';
+
 import { postFramework } from './helper';
 
 const Latex = require('react-latex');
 
 
 function ThirdPost() {
+    const [code, setCode] = useState('');
+
+    useEffect(() => {
+        fetch('/python_files/research_triangle_part_2.py')
+        .then(res => res.text())
+        .then(setCode);
+    }, []);
+
     const content = (
         <div>
             <p>
@@ -19,8 +31,9 @@ function ThirdPost() {
 
             <p>
                 Let <Latex>$a = (x_a, y_a), b = (x_b, y_b), x_3 = (x_c, y_c)$</Latex> be
-                the three points. Without loss of generality, we choose to fix <Latex>$c$</Latex> and
+                the three points. We choose to fix <Latex>$c$</Latex> and
                 choose to move <Latex>$a$</Latex> and <Latex>$b$</Latex>.
+                In the final algorithm, we'll switch which point we fix and which points we move.
                 Let <Latex>$a'$</Latex> denote where we move <Latex>$a$</Latex> to, and
                 let <Latex>$b'$</Latex> denote where we move <Latex>$b$</Latex> to.
             </p>
@@ -63,7 +76,22 @@ function ThirdPost() {
             </p>
 
             <p>
-                It is clear that a closed-form analytical solution is very hairy. What should we do...?
+                It is possible to take the derivate of this and set it equal to zero, but how do we solve that?
+                A closed-form analytical solution becomes hairy very quickly. Thankfully, there are
+                numerical approximations that we can do in code, although the pure mathematicians among us may roll
+                their eyes. Below is an example Python program that captures the final algorithm that also switches
+                which point is fixed:
+            </p>
+
+            <p>
+                <SyntaxHighlighter language="python" style={coy}>
+                    {code}
+                </SyntaxHighlighter>
+            </p>
+
+            <p>
+                There are probably many ways to optimize the optimization and make it work better, but we will
+                leave that out of the scope of this post. That concludes Part 2. Onwards to Part 3!
             </p>
         </div>
     )
