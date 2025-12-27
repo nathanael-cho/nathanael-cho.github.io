@@ -90,7 +90,7 @@ def optimize_w_fixed_point(a: np.ndarray, b: np.ndarray, c: np.ndarray):
 
 
 def format_vector(v: np.ndarray) -> str:
-    return f"({v[0]}, {v[1]})"
+    return f"({v[0]:.12f}, {v[1]:.12f})"
 
 
 def solve(a: np.ndarray, b: np.ndarray, c: np.ndarray):
@@ -106,7 +106,7 @@ def solve(a: np.ndarray, b: np.ndarray, c: np.ndarray):
 
 
 if __name__ == "__main__":
-    np.random.seed(42)
+    np.random.seed(9973)
 
     a = np.random.random(size=2)
     b = np.random.random(size=2)
@@ -123,4 +123,4 @@ if __name__ == "__main__":
         np.linalg.norm(b_prime - b),
         np.linalg.norm(c_prime - c),
     ))
-    print(f"Final distance moved: {final_distance_moved}")
+    print(f"Final distance moved: {final_distance_moved:.12f}")
