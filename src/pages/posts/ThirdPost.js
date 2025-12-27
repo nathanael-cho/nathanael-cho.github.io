@@ -41,17 +41,14 @@ function ThirdPost() {
             <p>
                 It appears that we are moving two points around, but we can simplify the problem by noting,
                 similar to Part 1, that if we fix <Latex>$a'$</Latex> then there are only two possible locations
-                for <Latex>$b'$</Latex>. Furthermore, since we can move <Latex>$a$</Latex> all around the plane,
-                we only need to consider the clockwise rotation of <Latex>$a'$</Latex> about <Latex>$c$</Latex>, since
-                the counterclockwise case is covered if we move <Latex>$a'$</Latex> to that position and do a
-                clockwise rotation back. We can write <Latex>$b$</Latex> out
-                as <Latex>{'$c + R_{\\pi/3} (a\' - c)$'}</Latex> where <Latex>{'$R_{\\pi/3}$'}</Latex> equals:
+                for <Latex>$b'$</Latex>. We can write <Latex>$b$</Latex> out
+                as <Latex>{'$c + R_{\\pm\\pi/3} (a\' - c)$'}</Latex> where <Latex>{'$R_{\\pm\\pi/3}$'}</Latex> equals:
             </p>
 
             <p>
                 <Latex displayMode>{
-                    '$$\\begin{pmatrix} \\cos\\frac{\\pi}{3} & -\\sin\\frac{\\pi}{3} \\\\'
-                    + '\\sin\\frac{\\pi}{3} & \\cos\\frac{\\pi}{3} \\end{pmatrix}$$'
+                    '$$\\begin{pmatrix} \\cos(\\pm\\frac{\\pi}{3}) & -\\sin(\\pm\\frac{\\pi}{3}) \\\\'
+                    + '\\sin(\\pm\\frac{\\pi}{3}) & \\cos(\\pm\\frac{\\pi}{3}) \\end{pmatrix}$$'
                 }</Latex>
             </p>
 
@@ -59,11 +56,11 @@ function ThirdPost() {
                 We'll make one more change in notation. We will rewrite <Latex>$a'$</Latex> as the
                 expression <Latex>$a + tv$</Latex> where <Latex>$t$</Latex> is some scalar
                 and <Latex>$v$</Latex> is a two dimensional unit vector. We can then
-                rewrite <Latex>$b'$</Latex> as <Latex>{'$c + R_{\\pi/3} (a + tv - c)$'}</Latex>.
+                rewrite <Latex>$b'$</Latex> as <Latex>{'$c + R_{\\pm\\pi/3} (a + tv - c)$'}</Latex>.
             </p>
 
             <p>
-                We now write out the equation that represents what we want to minimize:
+                We now write out the equation(s) that represents what we want to minimize:
             </p>
 
             <p>
@@ -71,7 +68,7 @@ function ThirdPost() {
                     '$||a\' - a|| + ||b\' - b||$'
                 }</Latex>
                 <Latex displayMode>{
-                    '$= ||tv|| + ||c + R_{\\pi/3} (a + tv - c) - b||$'
+                    '$= ||tv|| + ||c + R_{\\pm\\pi/3} (a + tv - c) - b||$'
                 }</Latex>
             </p>
 
@@ -79,8 +76,8 @@ function ThirdPost() {
                 It is possible to take the derivate of this and set it equal to zero, but how do we solve that?
                 A closed-form analytical solution becomes hairy very quickly. Thankfully, there are
                 numerical approximations that we can do in code, although the pure mathematicians among us may roll
-                their eyes. Below is an example Python program that captures the final algorithm that also switches
-                which point is fixed:
+                their eyes. Below is an example Python program of the final algorithm that also switches
+                which point is fixed and picks the best configuration:
             </p>
 
             <p>
@@ -90,7 +87,7 @@ function ThirdPost() {
             </p>
 
             <p>
-                There are probably many ways to optimize the optimization and make it work better, but we will
+                There are probably ways to optimize the optimization and make it work better, but we will
                 leave that out of the scope of this post. That concludes Part 2. Onwards to Part 3!
             </p>
         </div>
