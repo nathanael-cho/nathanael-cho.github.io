@@ -1,9 +1,21 @@
+import { useEffect, useState } from 'react';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { coy } from 'react-syntax-highlighter/dist/esm/styles/prism';
+
 import { postFramework } from './helper';
 
 const Latex = require('react-latex');
 
 
 function SecondPost() {
+    const [code, setCode] = useState('');
+    
+        useEffect(() => {
+            fetch('/python_files/research_triangle_part_1.py')
+            .then(res => res.text())
+            .then(setCode);
+        }, []);
+
     const content = (
         <div>
             <p>
@@ -104,6 +116,16 @@ function SecondPost() {
                     that minimizes the travel distance.
                 </li>
             </ol>
+
+            <p>
+                Here is Python code that implements it:
+            </p>
+
+            <p>
+                <SyntaxHighlighter language="python" style={coy}>
+                    {code}
+                </SyntaxHighlighter>
+            </p>
         </div>
     )
     
