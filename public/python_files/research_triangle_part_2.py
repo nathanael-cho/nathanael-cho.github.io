@@ -106,7 +106,7 @@ def solve(a: np.ndarray, b: np.ndarray, c: np.ndarray):
 
 
 if __name__ == "__main__":
-    np.random.seed(42)
+    np.random.seed(9973)
 
     a = np.random.random(size=2)
     b = np.random.random(size=2)

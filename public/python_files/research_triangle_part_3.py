@@ -94,7 +94,7 @@ def format_vector(v: np.ndarray) -> str:
 
 
 if __name__ == "__main__":
-    np.random.seed(42)
+    np.random.seed(9973)
 
     a = np.random.random(size=2)
     b = np.random.random(size=2)
