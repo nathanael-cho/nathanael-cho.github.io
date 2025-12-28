@@ -37,7 +37,9 @@ def geometric_median(
     return guess
 
 
-def calculate_given_params(params: tuple[float, float], a: np.ndarray, b: np.ndarray, c: np.ndarray, clockwise_flag: bool = True) -> tuple[float, float]:
+def calculate_given_params(
+    params: tuple[float, float], a: np.ndarray, b: np.ndarray, c: np.ndarray, clockwise_flag: bool = True
+) -> tuple[float, np.ndarray, np.ndarray, np.ndarray]:
     circumradius, theta = params
     assert -2 * PI <= theta <= 2 * PI
     assert circumradius >= 0
@@ -69,7 +71,7 @@ def calculate_given_params(params: tuple[float, float], a: np.ndarray, b: np.nda
     return distance, a_prime, b_prime, c_prime
 
 
-def optimize(a: np.ndarray, b: np.ndarray, c: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+def solve(a: np.ndarray, b: np.ndarray, c: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     best_distance = np.inf
     a_prime, b_prime, c_prime = None, None, None
 
@@ -93,14 +95,14 @@ def format_vector(v: np.ndarray) -> str:
     return f"({v[0]:.12f}, {v[1]:.12f})"
 
 
-if __name__ == "__main__":
-    np.random.seed(9973)
+def main(random_seed: int = 9973):
+    np.random.seed(random_seed)
 
     a = np.random.random(size=2)
     b = np.random.random(size=2)
     c = np.random.random(size=2)
 
-    a_prime, b_prime, c_prime = optimize(a, b, c)
+    a_prime, b_prime, c_prime = solve(a, b, c)
 
     print(f"a -> a': {format_vector(a)} -> {format_vector(a_prime)}")
     print(f"b -> b': {format_vector(b)} -> {format_vector(b_prime)}")
@@ -112,3 +114,7 @@ if __name__ == "__main__":
         np.linalg.norm(c_prime - c),
     ))
     print(f"Final distance moved: {total_distance_moved:.12f}")
+
+
+if __name__ == "__main__":
+    main()
