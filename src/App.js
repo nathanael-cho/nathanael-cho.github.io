@@ -7,6 +7,7 @@ import AboutMe from './pages/AboutMe';
 import FirstPost from './pages/posts/FirstPost';
 import SecondPost from './pages/posts/SecondPost';
 import ThirdPost from './pages/posts/ThirdPost';
+import FourthPost from './pages/posts/FourthPost';
 
 import '@mantine/core/styles.css';
 import './App.css';
@@ -19,6 +20,8 @@ function getContent(hash) {
     return <SecondPost />;
   } else if (hash === '#post-3') {
     return <ThirdPost />;
+  } else if (hash === '#post-4') {
+    return <FourthPost />;
   } else if (hash === '#about-me') {
     return <AboutMe />;
   } else {
@@ -77,7 +80,13 @@ function App() {
         />
         <NavLink
           href="#post-3"
-          label="2. The Research Triangle (Part 2)"
+          label="3. The Research Triangle (Part 2)"
+          leftSection={<IconTriangle />}
+          onClick={close}
+        />
+        <NavLink
+          href="#post-4"
+          label="4. The Research Triangle (Part 3)"
           leftSection={<IconTriangle />}
           onClick={close}
         />

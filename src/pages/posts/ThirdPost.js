@@ -73,11 +73,11 @@ function ThirdPost() {
             </p>
 
             <p>
-                It is possible to take the derivate of this and set it equal to zero, but how do we solve that?
-                A closed-form analytical solution becomes hairy very quickly. Thankfully, there are
+                It is possible to take the derivative of this and set it equal to zero. However, we quicky find that
+                a closed-form analytical solution becomes hairy. Thankfully, there are
                 numerical approximations that we can do in code, although the pure mathematicians among us may roll
-                their eyes. Below is an example Python program of the final algorithm that also switches
-                which point is fixed and picks the best configuration:
+                their eyes. Below is an example Python program of the final algorithm that includes what we mentioned above: we switch
+                which point is fixed then pick the best configuration:
             </p>
 
             <p>
