@@ -61,7 +61,7 @@ function SecondPost() {
 
             <p>
                 Let <Latex>$a = (x_a, y_a), b = (x_b, y_b), x_3 = (x_c, y_c)$</Latex> be
-                the three points. To start, we choose to move <Latex>$a$</Latex>.
+                the three points which are also three vectors. To start, we choose to move <Latex>$a$</Latex>.
                 We immediately notice that there are only two
                 places <Latex>$a$</Latex> can move to such that the triangle is equilateral.
             </p>
@@ -79,17 +79,16 @@ function SecondPost() {
             </p>
                 
             <p>
-                Let <Latex>{'$\\vec{a}$, $\\vec{b}$, $\\vec{c}$'}</Latex> be
-                the vector forms of the three points. Then, we have the following closed form
+                We then have the following closed form
                 for where <Latex>{'$a$'}</Latex> can move to:
             </p>
 
             <p>
                 <Latex displayMode>{
-                    '$$\\vec{c} +'
+                    '$$c +'
                     + '\\begin{pmatrix} \\cos\\pm\\frac{\\pi}{3} & -\\sin\\pm\\frac{\\pi}{3} \\\\'
                     + '\\sin\\pm\\frac{\\pi}{3} & \\cos\\pm\\frac{\\pi}{3} \\end{pmatrix}'
-                    + '(\\vec{b} - \\vec{c})$$'
+                    + '(b - c)$$'
                 }</Latex>
             </p>
 

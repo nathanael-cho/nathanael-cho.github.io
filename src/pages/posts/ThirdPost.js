@@ -53,10 +53,12 @@ function ThirdPost() {
             </p>
 
             <p>
-                We'll make one more change in notation. We will rewrite <Latex>$a'$</Latex> as the
-                expression <Latex>$a + tv$</Latex> where <Latex>$t$</Latex> is some scalar
-                and <Latex>$v$</Latex> is a two dimensional unit vector. We can then
-                rewrite <Latex>$b'$</Latex> as <Latex>{'$c + R_{\\pm\\pi/3} (a + tv - c)$'}</Latex>.
+                <Latex>{`
+                    We'll then make a change in notation. We will rewrite $a'$ as the
+                    expression $a + tv$ where $t$ is some scalar
+                    and $v$ is a two dimensional unit vector that we can summarize in a single parameter $\\theta$. We can then
+                    rewrite $b'$ as $c + R_{\\pm\\pi/3} (a + tv - c)$.
+                `}</Latex>
             </p>
 
             <p>
@@ -73,10 +75,11 @@ function ThirdPost() {
             </p>
 
             <p>
-                It is possible to take the derivative of this and set it equal to zero. However, we quicky find that
+                It is possible to take the derivative of this with respect to <Latex>$t$ and $v$</Latex> and set it equal to zero.
+                However, we quicky find that
                 a closed-form analytical solution becomes hairy. Thankfully, there are
                 numerical approximations that we can do in code, although the pure mathematicians among us may roll
-                their eyes. Below is an example Python program of the final algorithm that includes what we mentioned above: we switch
+                their eyes. Below is an example Python program of the final algorithm that includes what we mentioned above. We switch
                 which point is fixed then pick the best configuration:
             </p>
 
