@@ -1,12 +1,13 @@
-import { Container, Space, Title } from '@mantine/core';
+import { Container, Stack, Title } from '@mantine/core';
 
 
 export function postFramework(title, body) {
     return (
-        <Container size="md">
-            <Title>{title}</Title>
-            <Space h="md" />
-            {body}
+        <Container size="lg">
+            <Stack>
+                <Title>{title}</Title>
+                {body}
+            </Stack>
         </Container>
     )
 }

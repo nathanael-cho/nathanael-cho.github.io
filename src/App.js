@@ -1,6 +1,16 @@
-import { AppShell, Burger, NavLink } from '@mantine/core';
+import {
+  ActionIcon,
+  Anchor,
+  AppShell,
+  Burger,
+  Group,
+  NavLink,
+  Paper,
+  Stack,
+  Text,
+} from '@mantine/core';
 import { useDisclosure, useHash } from '@mantine/hooks';
-import { IconBook, IconHome, IconTriangle, IconUserCircle } from '@tabler/icons-react';
+import { IconArrowLeft, IconArrowRight, IconBook, IconTriangle } from '@tabler/icons-react';
 
 import Home from './pages/Home';
 import AboutMe from './pages/AboutMe';
@@ -13,24 +23,112 @@ import '@mantine/core/styles.css';
 import './App.css';
 
 
-function getContent(hash) {
-  if (hash === '#post-1') {
-    return <FirstPost />;
-  } else if (hash === '#post-2') {
-    return <SecondPost />;
-  } else if (hash === '#post-3') {
-    return <ThirdPost />;
-  } else if (hash === '#post-4') {
-    return <FourthPost />;
-  } else if (hash === '#about-me') {
-    return <AboutMe />;
-  } else {
-    return <Home />;
-  }
-}
+const posts = [
+  {
+    id: 'post-1',
+    title: 'Why is my nickname Nacho?',
+    icon: IconBook,
+    component: FirstPost,
+  },
+  {
+    id: 'post-2',
+    title: 'The Research Triangle (Part 1)',
+    icon: IconTriangle,
+    component: SecondPost,
+  },
+  {
+    id: 'post-3',
+    title: 'The Research Triangle (Part 2)',
+    icon: IconTriangle,
+    component: ThirdPost,
+  },
+  {
+    id: 'post-4',
+    title: 'The Research Triangle (Part 3)',
+    icon: IconTriangle,
+    component: FourthPost,
+  },
+];
 
 
-function App() {
+const getContent = (hash) => {
+  if (hash === '#about-me') return <AboutMe />;
+  if (hash === '#home' || !hash) return <Home />;
+
+  const post = posts.find((p) => `#${p.id}` === hash);
+  return post ? <post.component /> : <Home />;
+};
+
+
+function PostNavigation({ hash }) {
+  const index = posts.findIndex((p) => `#${p.id}` === hash);
+  if (index === -1) return null;
+
+  const prev = posts[index - 1];
+  const next = posts[index + 1];
+
+  const paperWidth = 240;
+
+  return (
+    <Group
+      justify="space-between"
+      px="md"
+    >
+      {prev ? (
+        <Paper
+          component="a"
+          href={`#${prev.id}`}
+          withBorder
+          radius="md"
+          p="md"
+          style={{ maxWidth: paperWidth, flex: 1 }}
+        >
+          <Group gap="sm">
+            <ActionIcon variant="light">
+              <IconArrowLeft size={18} />
+            </ActionIcon>
+            <div>
+              <Text size="md" c="dimmed">
+                Previous
+              </Text>
+              <Text fw={600}>{prev.label}</Text>
+            </div>
+          </Group>
+        </Paper>
+      ) : (
+        <div style={{ flex: 1 }} />
+      )}
+
+      {next ? (
+        <Paper
+          component="a"
+          href={`#${next.id}`}
+          withBorder
+          radius="md"
+          p="md"
+          style={{ maxWidth: paperWidth, flex: 1, textAlign: 'right' }}
+        >
+          <Group gap="sm" justify="flex-end">
+            <div>
+              <Text size="md" c="dimmed">
+                Next
+              </Text>
+              <Text fw={600}>{next.label}</Text>
+            </div>
+            <ActionIcon variant="light">
+              <IconArrowRight size={18} />
+            </ActionIcon>
+          </Group>
+        </Paper>
+      ) : (
+        <div style={{ flex: 1 }} />
+      )}
+    </Group>
+  );
+};
+
+
+const App = () => {
   const [opened, { close, toggle }] = useDisclosure();
   const [hash,] = useHash();
 
@@ -46,54 +144,42 @@ function App() {
       padding="md"
     >
       <AppShell.Header p="md" style={{ background: '#aed6f1' }}>
-        <Burger
-          opened={opened}
-          onClick={toggle}
-          size="sm"
-        />
+        <Group justify="space-between" h="100%">
+          <Group>
+            <Burger
+              opened={opened}
+              onClick={toggle}
+              size="sm"
+            />
+
+            <Anchor href="#home" fw={600}>
+              Home
+            </Anchor>
+
+            <Anchor href="#about-me" fw={600}>
+              About Me
+            </Anchor>
+          </Group>
+        </Group>
       </AppShell.Header>
 
       <AppShell.Navbar p="md">
-        <NavLink
-          href="#home"
-          label="Home"
-          leftSection={<IconHome />}
-          onClick={close}
-        />
-        <NavLink
-          href="#about-me"
-          label="About Me"
-          leftSection={<IconUserCircle />}
-          onClick={close}
-        />
-        <NavLink
-          href="#post-1"
-          label="1. Why is my nickname Nacho?"
-          leftSection={<IconBook />}
-          onClick={close}
-        />
-        <NavLink
-          href="#post-2"
-          label="2. The Research Triangle (Part 1)"
-          leftSection={<IconTriangle />}
-          onClick={close}
-        />
-        <NavLink
-          href="#post-3"
-          label="3. The Research Triangle (Part 2)"
-          leftSection={<IconTriangle />}
-          onClick={close}
-        />
-        <NavLink
-          href="#post-4"
-          label="4. The Research Triangle (Part 3)"
-          leftSection={<IconTriangle />}
-          onClick={close}
-        />
+        {posts.map((post, index) => (
+          <NavLink
+            key={post.id}
+            href={`#${post.id}`}
+            label={`${index + 1}. ${post.title}`}
+            leftSection={<post.icon />}
+            onClick={close}
+          />
+        ))}
       </AppShell.Navbar>
 
       <AppShell.Main>
-        {getContent(hash)}
+        <Stack>
+          {getContent(hash)}
+          <PostNavigation hash={hash} />
+        </Stack>
       </AppShell.Main>
     </AppShell>
   );
