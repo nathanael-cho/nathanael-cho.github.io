@@ -11,6 +11,7 @@ import {
   Text,
   useComputedColorScheme,
   useMantineColorScheme,
+  useMantineTheme,
 } from '@mantine/core';
 import { useDisclosure, useHash } from '@mantine/hooks';
 import { IconArrowLeft, IconArrowRight, IconBabyCarriage, IconChefHat, IconMoon, IconSun, IconTriangle, TablerIcon } from '@tabler/icons-react';
@@ -163,9 +164,10 @@ const App = (): JSX.Element => {
   const { setColorScheme } = useMantineColorScheme();
   const computedColorScheme = useComputedColorScheme('light');
 
+  const theme = useMantineTheme();
   const isDark = computedColorScheme === 'dark';
-  const headerBg = isDark ? '#1a4971' : '#aed6f1';
-  const headerTextColor = isDark ? '#aed6f1' : '#1a4971';
+  const headerBg = isDark ? theme.colors['brand-dark'][6] : theme.colors['brand-light'][3];
+  const headerTextColor = isDark ? theme.colors['brand-light'][3] : theme.colors['brand-dark'][6];
 
   const toggleColorScheme = () => {
     setColorScheme(isDark ? 'light' : 'dark');

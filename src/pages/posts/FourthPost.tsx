@@ -94,8 +94,7 @@ function FourthPost({ date }: PostProps): JSX.Element {
             <Text>
                 Experimentally, I found that most of the time, the distance we moved the points does not improve whether we're allowed to move one, two, or three
                 points. I started to look into it, but I gave up partway through and leave it as an exercise for the reader. If you have any insights,
-                feel free to send them my way. My personal biography page has my LinkedIn profile which has my email. I'm somewhat paranoid that if I post my email here directly,
-                I'm going to get spammed one day.
+                feel free to send them my way.
             </Text>
         </Stack>
     )
