@@ -182,9 +182,9 @@ const App = (): JSX.Element => {
       }}
       padding="md"
     >
-      <AppShell.Header p="md" style={{ background: headerBg }}>
-        <Group justify="space-between" h="100%">
-          <Group>
+      <AppShell.Header style={{ background: headerBg }}>
+        <Group justify="space-between" h="100%" px="md">
+          <Group align="center">
             <Burger
               opened={opened}
               onClick={toggle}
