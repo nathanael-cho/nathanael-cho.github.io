@@ -1,9 +1,9 @@
 import { Blockquote, Stack, Text } from '@mantine/core';
 
-import { postFramework } from './helper';
+import { postFramework, PostProps } from './helper';
 
 
-function FifthPost(): JSX.Element {
+function FifthPost({ date }: PostProps): JSX.Element {
     const content = (
         <Stack gap="md">
             <Text>
@@ -50,7 +50,7 @@ function FifthPost(): JSX.Element {
         </Stack>
     )
 
-    return postFramework("How We Named Our Son", content);
+    return postFramework("How We Named Our Son", content, date);
 }
 
 

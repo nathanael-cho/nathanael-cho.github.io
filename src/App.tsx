@@ -9,9 +9,11 @@ import {
   Paper,
   Stack,
   Text,
+  useComputedColorScheme,
+  useMantineColorScheme,
 } from '@mantine/core';
 import { useDisclosure, useHash } from '@mantine/hooks';
-import { IconArrowLeft, IconArrowRight, IconBabyCarriage, IconChefHat, IconTriangle, TablerIcon } from '@tabler/icons-react';
+import { IconArrowLeft, IconArrowRight, IconBabyCarriage, IconChefHat, IconMoon, IconSun, IconTriangle, TablerIcon } from '@tabler/icons-react';
 
 import Home from './pages/Home';
 import AboutMe from './pages/AboutMe';
@@ -20,46 +22,60 @@ import SecondPost from './pages/posts/SecondPost';
 import ThirdPost from './pages/posts/ThirdPost';
 import FourthPost from './pages/posts/FourthPost';
 import FifthPost from './pages/posts/FifthPost';
+import { PostProps } from './pages/posts/helper';
 
 import '@mantine/core/styles.css';
 import './App.css';
 
-
 interface Post {
   id: string;
   title: string;
+  date: Date;
   icon: TablerIcon;
-  component: ComponentType;
+  component: ComponentType<PostProps>;
 }
+
+const formatDate = (date: Date): string => {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+};
 
 const posts: Post[] = [
   {
     id: 'post-1',
     title: 'Why is my nickname Nacho?',
+    date: new Date(2024, 8, 20), // September 20, 2024
     icon: IconChefHat,
     component: FirstPost,
   },
   {
     id: 'post-2',
     title: 'The Research Triangle (Part 1)',
+    date: new Date(2024, 9, 18), // October 18, 2024
     icon: IconTriangle,
     component: SecondPost,
   },
   {
     id: 'post-3',
     title: 'The Research Triangle (Part 2)',
+    date: new Date(2025, 11, 25), // December 25, 2025
     icon: IconTriangle,
     component: ThirdPost,
   },
   {
     id: 'post-4',
     title: 'The Research Triangle (Part 3)',
+    date: new Date(2025, 11, 28), // December 28, 2025
     icon: IconTriangle,
     component: FourthPost,
   },
   {
     id: 'post-5',
     title: 'How We Named Our Son',
+    date: new Date(2025, 0, 17), // January 17, 2025
     icon: IconBabyCarriage,
     component: FifthPost,
   },
@@ -71,7 +87,7 @@ const getContent = (hash: string): JSX.Element => {
   if (hash === '#home' || !hash) return <Home />;
 
   const post = posts.find((p) => `#${p.id}` === hash);
-  return post ? <post.component /> : <Home />;
+  return post ? <post.component date={formatDate(post.date)} /> : <Home />;
 };
 
 
@@ -144,6 +160,16 @@ function PostNavigation({ hash }: PostNavigationProps): JSX.Element | null {
 const App = (): JSX.Element => {
   const [opened, { close, toggle }] = useDisclosure();
   const [hash,] = useHash();
+  const { setColorScheme } = useMantineColorScheme();
+  const computedColorScheme = useComputedColorScheme('light');
+
+  const isDark = computedColorScheme === 'dark';
+  const headerBg = isDark ? '#1a4971' : '#aed6f1';
+  const headerTextColor = isDark ? '#aed6f1' : '#1a4971';
+
+  const toggleColorScheme = () => {
+    setColorScheme(isDark ? 'light' : 'dark');
+  };
 
   return (
     <AppShell
@@ -156,23 +182,33 @@ const App = (): JSX.Element => {
       }}
       padding="md"
     >
-      <AppShell.Header p="md" style={{ background: '#aed6f1' }}>
+      <AppShell.Header p="md" style={{ background: headerBg }}>
         <Group justify="space-between" h="100%">
           <Group>
             <Burger
               opened={opened}
               onClick={toggle}
               size="sm"
+              color={headerTextColor}
             />
 
-            <Anchor href="#home" fw="bold" c="#1a4971">
+            <Anchor href="#home" fw="bold" c={headerTextColor}>
               Home
             </Anchor>
 
-            <Anchor href="#about-me" fw="bold" c="#1a4971">
+            <Anchor href="#about-me" fw="bold" c={headerTextColor}>
               About Me
             </Anchor>
           </Group>
+
+          <ActionIcon
+            variant="subtle"
+            onClick={toggleColorScheme}
+            size="lg"
+            c={headerTextColor}
+          >
+            {isDark ? <IconSun size={20} /> : <IconMoon size={20} />}
+          </ActionIcon>
         </Group>
       </AppShell.Header>
 

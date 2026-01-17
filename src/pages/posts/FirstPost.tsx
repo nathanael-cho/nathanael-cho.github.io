@@ -1,9 +1,9 @@
 import { List, Stack, Text } from '@mantine/core';
 
-import { postFramework } from './helper';
+import { postFramework, PostProps } from './helper';
 
 
-function FirstPost(): JSX.Element {
+function FirstPost({ date }: PostProps): JSX.Element {
     const content = (
         <Stack gap="md">
             <Text>
@@ -23,7 +23,7 @@ function FirstPost(): JSX.Element {
         </Stack>
     )
     
-    return postFramework("Why is my nickname Nacho?", content);
+    return postFramework("Why is my nickname Nacho?", content, date);
 }
 
 

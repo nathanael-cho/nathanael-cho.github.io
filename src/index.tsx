@@ -12,7 +12,7 @@ const theme = createTheme({
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
-  <MantineProvider theme={theme}>
+  <MantineProvider theme={theme} defaultColorScheme="auto">
     <React.StrictMode>
       <App />
     </React.StrictMode>

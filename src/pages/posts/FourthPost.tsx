@@ -4,10 +4,10 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { coy } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import Latex from 'react-latex';
 
-import { postFramework } from './helper';
+import { postFramework, PostProps } from './helper';
 
 
-function FourthPost(): JSX.Element {
+function FourthPost({ date }: PostProps): JSX.Element {
     const [code, setCode] = useState<string>('');
 
     useEffect(() => {
@@ -100,7 +100,7 @@ function FourthPost(): JSX.Element {
         </Stack>
     )
     
-    return postFramework("The Research Triangle (Part 3)", content);
+    return postFramework("The Research Triangle (Part 3)", content, date);
 }
 
 

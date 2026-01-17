@@ -1,12 +1,19 @@
 import { ReactNode } from 'react';
-import { Container, Stack, Title } from '@mantine/core';
+import { Container, Stack, Text, Title } from '@mantine/core';
 
 
-export function postFramework(title: string, body: ReactNode): JSX.Element {
+export interface PostProps {
+    date: string;
+}
+
+export function postFramework(title: string, body: ReactNode, date?: string): JSX.Element {
     return (
         <Container size="lg">
             <Stack>
-                <Title>{title}</Title>
+                <div>
+                    <Title>{title}</Title>
+                    {date && <Text c="dimmed" size="sm">Published on {date}</Text>}
+                </div>
                 {body}
             </Stack>
         </Container>
