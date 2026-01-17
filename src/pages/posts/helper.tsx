@@ -1,7 +1,8 @@
+import { ReactNode } from 'react';
 import { Container, Stack, Title } from '@mantine/core';
 
 
-export function postFramework(title, body) {
+export function postFramework(title: string, body: ReactNode): JSX.Element {
     return (
         <Container size="lg">
             <Stack>
@@ -9,5 +10,5 @@ export function postFramework(title, body) {
                 {body}
             </Stack>
         </Container>
-    )
+    );
 }

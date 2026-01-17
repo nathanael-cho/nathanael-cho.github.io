@@ -1,7 +1,7 @@
 import { Center, Container, Image, Space, } from '@mantine/core';
 
 
-function Home() {
+function Home(): JSX.Element {
     return (
         <Container size="md">
             <Center>

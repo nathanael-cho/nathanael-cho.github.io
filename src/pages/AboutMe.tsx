@@ -1,7 +1,7 @@
 import { Container, Space, Text, Title } from '@mantine/core';
 
 
-function AboutMe() {
+function AboutMe(): JSX.Element {
     return (
         <Container size="md">
             <Title>About Me</Title>

@@ -3,7 +3,7 @@ import { Blockquote, Stack, Text } from '@mantine/core';
 import { postFramework } from './helper';
 
 
-function FifthPost() {
+function FifthPost(): JSX.Element {
     const content = (
         <Stack gap="md">
             <Text>

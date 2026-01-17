@@ -3,7 +3,7 @@ import { List, Stack, Text } from '@mantine/core';
 import { postFramework } from './helper';
 
 
-function FirstPost() {
+function FirstPost(): JSX.Element {
     const content = (
         <Stack gap="md">
             <Text>

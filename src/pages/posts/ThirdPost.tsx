@@ -2,14 +2,13 @@ import { useEffect, useState } from 'react';
 import { Stack, Text } from '@mantine/core';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { coy } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import Latex from 'react-latex';
 
 import { postFramework } from './helper';
 
-const Latex = require('react-latex');
 
-
-function ThirdPost() {
-    const [code, setCode] = useState('');
+function ThirdPost(): JSX.Element {
+    const [code, setCode] = useState<string>('');
 
     useEffect(() => {
         fetch('/python_files/research_triangle_part_2.py')

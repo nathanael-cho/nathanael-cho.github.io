@@ -1,3 +1,4 @@
+import { ComponentType } from 'react';
 import {
   ActionIcon,
   Anchor,
@@ -10,7 +11,7 @@ import {
   Text,
 } from '@mantine/core';
 import { useDisclosure, useHash } from '@mantine/hooks';
-import { IconArrowLeft, IconArrowRight, IconBabyCarriage, IconChefHat, IconTriangle } from '@tabler/icons-react';
+import { IconArrowLeft, IconArrowRight, IconBabyCarriage, IconChefHat, IconTriangle, TablerIcon } from '@tabler/icons-react';
 
 import Home from './pages/Home';
 import AboutMe from './pages/AboutMe';
@@ -24,7 +25,14 @@ import '@mantine/core/styles.css';
 import './App.css';
 
 
-const posts = [
+interface Post {
+  id: string;
+  title: string;
+  icon: TablerIcon;
+  component: ComponentType;
+}
+
+const posts: Post[] = [
   {
     id: 'post-1',
     title: 'Why is my nickname Nacho?',
@@ -58,7 +66,7 @@ const posts = [
 ];
 
 
-const getContent = (hash) => {
+const getContent = (hash: string): JSX.Element => {
   if (hash === '#about-me') return <AboutMe />;
   if (hash === '#home' || !hash) return <Home />;
 
@@ -67,7 +75,11 @@ const getContent = (hash) => {
 };
 
 
-function PostNavigation({ hash }) {
+interface PostNavigationProps {
+  hash: string;
+}
+
+function PostNavigation({ hash }: PostNavigationProps): JSX.Element | null {
   const index = posts.findIndex((p) => `#${p.id}` === hash);
   if (index === -1) return null;
 
@@ -94,12 +106,9 @@ function PostNavigation({ hash }) {
             <ActionIcon variant="light">
               <IconArrowLeft size={18} />
             </ActionIcon>
-            <div>
-              <Text size="md" c="dimmed">
-                Previous
-              </Text>
-              <Text fw={600}>{prev.label}</Text>
-            </div>
+            <Text size="md" c="dimmed">
+              Previous
+            </Text>
           </Group>
         </Paper>
       ) : (
@@ -116,12 +125,9 @@ function PostNavigation({ hash }) {
           style={{ maxWidth: paperWidth, flex: 1, textAlign: 'right' }}
         >
           <Group gap="sm" justify="flex-end">
-            <div>
-              <Text size="md" c="dimmed">
-                Next
-              </Text>
-              <Text fw={600}>{next.label}</Text>
-            </div>
+            <Text size="md" c="dimmed">
+              Next
+            </Text>
             <ActionIcon variant="light">
               <IconArrowRight size={18} />
             </ActionIcon>
@@ -135,7 +141,7 @@ function PostNavigation({ hash }) {
 };
 
 
-const App = () => {
+const App = (): JSX.Element => {
   const [opened, { close, toggle }] = useDisclosure();
   const [hash,] = useHash();
 
