@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { List, Stack, Text } from '@mantine/core';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { coy } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
@@ -9,7 +10,7 @@ const Latex = require('react-latex');
 
 function SecondPost() {
     const [code, setCode] = useState('');
-    
+
         useEffect(() => {
             fetch('/python_files/research_triangle_part_1.py')
             .then(res => res.text())
@@ -17,11 +18,11 @@ function SecondPost() {
         }, []);
 
     const content = (
-        <div>
-            <p>
+        <Stack gap="md">
+            <Text>
                 As per Wikipedia:
-            </p>
-            <p>    
+            </Text>
+            <Text>
                 "The Research Triangle [is a nickname] for a
                 metropolitan area in the Piedmont region of the U.S. state of
                 North Carolina. Anchored by the cities of Raleigh and Durham
@@ -29,103 +30,101 @@ function SecondPost() {
                 research universities: North Carolina State University, Duke
                 University, and the University of North Carolina at Chapel Hill,
                 respectively."
-            </p>
+            </Text>
 
-            <p>
+            <Text>
                 With a quick look at Google Maps, one can immediately see that the
                 triangle formed by these three cities is not equilateral.
                 What a letdown!
-            </p>
+            </Text>
 
-            <p>
+            <Text>
                 Last week, I called a friend who lives in that area,
                 and upon discovering this, we came up with the following question:
-            </p>
-            <p><b>
+            </Text>
+            <Text fw="bold">
                 Given three distinct
                 points in a plane, what is the minimum distance we can
                 move the points such that the triangle
                 formed by the points <i>is</i> equilateral?
-            </b></p>
+            </Text>
 
-            <p>
+            <Text>
                 For this post, we start with a simplified version:
-            </p>
+            </Text>
 
-            <p><b>
+            <Text fw="bold">
                 Given three distinct
                 points in a plane, what is the minimum distance we can
                 move <i>any one point</i> such that the triangle
                 formed by the points is equilateral?
-            </b></p>
+            </Text>
 
-            <p>
+            <Text>
                 Let <Latex>$a = (x_a, y_a), b = (x_b, y_b), x_3 = (x_c, y_c)$</Latex> be
                 the three points which are also three vectors. To start, we choose to move <Latex>$a$</Latex>.
                 We immediately notice that there are only two
                 places <Latex>$a$</Latex> can move to such that the triangle is equilateral.
-            </p>
+            </Text>
 
-            <p>
+            <Text>
                 What is a closed form for the coordinates of those two points?
                 We call upon an old friend, the two-dimensional rotation
                 matrix:
-            </p>
-            <p>
+            </Text>
+            <Text>
                 <Latex displayMode>{
                     '$\\begin{pmatrix} \\cos\\theta & -\\sin\\theta \\\\'
                     + '\\sin\\theta & \\cos\\theta \\end{pmatrix}$'
                 }</Latex>
-            </p>
-                
-            <p>
+            </Text>
+
+            <Text>
                 We then have the following closed form
                 for where <Latex>{'$a$'}</Latex> can move to:
-            </p>
+            </Text>
 
-            <p>
+            <Text>
                 <Latex displayMode>{
                     '$$c +'
                     + '\\begin{pmatrix} \\cos\\pm\\frac{\\pi}{3} & -\\sin\\pm\\frac{\\pi}{3} \\\\'
                     + '\\sin\\pm\\frac{\\pi}{3} & \\cos\\pm\\frac{\\pi}{3} \\end{pmatrix}'
                     + '(b - c)$$'
                 }</Latex>
-            </p>
+            </Text>
 
-            <p>
+            <Text>
                 Said in words, we get the two possible locations for <Latex>{'$a$'}</Latex> by
                 rotating <Latex>{'$b$'}</Latex> around <Latex>{'$c$'}</Latex> by <Latex>{'$\\frac{\\pi}{3}$'}</Latex> radians in both directions.
-            </p>
+            </Text>
 
-            <p>
+            <Text>
                 To close out this first part, the way to get the minimum distance is as follows:
-            </p>
+            </Text>
 
-            <ol>
-                <li>
+            <List type="ordered" withPadding>
+                <List.Item>
                     For each of <Latex>{'$a, b, c$'}</Latex>, calculate the two
                     possible destinations.
-                </li>
-                <li>
+                </List.Item>
+                <List.Item>
                     For each of the two destinations, calculate the distance
                     to the original location.
-                </li>
-                <li>
+                </List.Item>
+                <List.Item>
                     Pick the original point/destination point pair
                     that minimizes the travel distance.
-                </li>
-            </ol>
+                </List.Item>
+            </List>
 
-            <p>
+            <Text>
                 Here is Python code that implements it:
-            </p>
+            </Text>
 
-            <p>
-                <SyntaxHighlighter language="python" style={coy}>
-                    {code}
-                </SyntaxHighlighter>
-            </p>
-        </div>
+            <SyntaxHighlighter language="python" style={coy}>
+                {code}
+            </SyntaxHighlighter>
+        </Stack>
     )
     
     return postFramework("The Research Triangle (Part 1)", content);

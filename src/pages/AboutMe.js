@@ -10,7 +10,7 @@ function AboutMe() {
                 My name is Nathanael Cho, and I am a software developer in the finance industry with a passion for mathematics. You can click on the link below to see what I look like!
             </Text>
             <Space h="md" />
-            <a href="https://www.linkedin.com/in/nathanael-a-cho/">LinkedIn</a>
+            <a href="https://www.linkedin.com/in/nathanael-a-cho/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </Container>
     )
 }

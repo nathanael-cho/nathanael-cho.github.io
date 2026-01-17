@@ -10,7 +10,7 @@ import {
   Text,
 } from '@mantine/core';
 import { useDisclosure, useHash } from '@mantine/hooks';
-import { IconArrowLeft, IconArrowRight, IconBook, IconTriangle } from '@tabler/icons-react';
+import { IconArrowLeft, IconArrowRight, IconBabyCarriage, IconChefHat, IconTriangle } from '@tabler/icons-react';
 
 import Home from './pages/Home';
 import AboutMe from './pages/AboutMe';
@@ -18,6 +18,7 @@ import FirstPost from './pages/posts/FirstPost';
 import SecondPost from './pages/posts/SecondPost';
 import ThirdPost from './pages/posts/ThirdPost';
 import FourthPost from './pages/posts/FourthPost';
+import FifthPost from './pages/posts/FifthPost';
 
 import '@mantine/core/styles.css';
 import './App.css';
@@ -27,7 +28,7 @@ const posts = [
   {
     id: 'post-1',
     title: 'Why is my nickname Nacho?',
-    icon: IconBook,
+    icon: IconChefHat,
     component: FirstPost,
   },
   {
@@ -47,6 +48,12 @@ const posts = [
     title: 'The Research Triangle (Part 3)',
     icon: IconTriangle,
     component: FourthPost,
+  },
+  {
+    id: 'post-5',
+    title: 'How We Named Our Son',
+    icon: IconBabyCarriage,
+    component: FifthPost,
   },
 ];
 
@@ -152,11 +159,11 @@ const App = () => {
               size="sm"
             />
 
-            <Anchor href="#home" fw={600}>
+            <Anchor href="#home" fw="bold" c="#1a4971">
               Home
             </Anchor>
 
-            <Anchor href="#about-me" fw={600}>
+            <Anchor href="#about-me" fw="bold" c="#1a4971">
               About Me
             </Anchor>
           </Group>
