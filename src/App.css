@@ -5,3 +5,23 @@
 .feature-image {
   width: min(500px, 100%);
 }
+
+/* Prevent code blocks from causing horizontal page overflow */
+pre {
+  max-width: calc(100vw - 32px);
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Prevent LaTeX from causing horizontal page overflow */
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* Prevent any element from exceeding viewport */
+.mantine-Container-root {
+  max-width: 100%;
+  overflow-x: hidden;
+}
