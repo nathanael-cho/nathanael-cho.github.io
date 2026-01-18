@@ -40,9 +40,10 @@ function SixthPost({ date }: PostProps): JSX.Element {
                 <Latex>
                     Problem Statement: Let $p(n)$ represent the number of ways
                     in which $n$ coins can be separated into piles. For example,
-                    five coins can be separated into five piles. Find the least
-                    value of $n$ such that $p(n)$ is divisible by one million.
-                </Latex>
+                    five coins can be separated into piles in exactly seven ways. Find the least
+                    value of $n$ such that $p(n)$ is divisible by one million. The original
+                    problem
+                </Latex> can be found <Anchor href="https://projecteuler.net/problem=78" c="blue" target="_blank" rel="noopener noreferrer">here</Anchor>.
             </Text>
 
             <Title>Power Series</Title>
