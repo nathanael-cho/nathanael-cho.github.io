@@ -7,7 +7,7 @@ function FifthPost({ date }: PostProps): JSX.Element {
     const content = (
         <Stack gap="md">
             <Text>
-                On September 15th, 2025 we welcomed Collin Nathanael Cho as the newest member of our
+                On September 15th, 2025, we welcomed Collin Nathanael Cho as the newest member of our
                 family. He measured in at 20 and 1/4 inches and 7 pounds 4 ounces.
             </Text>
             <Text>

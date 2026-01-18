@@ -60,7 +60,7 @@ function SecondPost({ date }: PostProps): JSX.Element {
             </Text>
 
             <Text>
-                Let <Latex>$a = (x_a, y_a), b = (x_b, y_b), x_3 = (x_c, y_c)$</Latex> be
+                Let <Latex>$a = (x_a, y_a), b = (x_b, y_b), c = (x_c, y_c)$</Latex> be
                 the three points which are also three vectors. To start, we choose to move <Latex>$a$</Latex>.
                 We immediately notice that there are only two
                 places <Latex>$a$</Latex> can move to such that the triangle is equilateral.

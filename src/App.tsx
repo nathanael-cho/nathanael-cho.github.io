@@ -14,7 +14,7 @@ import {
   useMantineTheme,
 } from '@mantine/core';
 import { useDisclosure, useHash } from '@mantine/hooks';
-import { IconArrowLeft, IconArrowRight, IconBabyCarriage, IconChefHat, IconMoon, IconSun, IconTriangle, TablerIcon } from '@tabler/icons-react';
+import { IconArrowLeft, IconArrowRight, IconBabyCarriage, IconChefHat, IconCoins, IconMoon, IconSun, IconTriangle, TablerIcon } from '@tabler/icons-react';
 
 import Home from './pages/Home';
 import AboutMe from './pages/AboutMe';
@@ -23,6 +23,7 @@ import SecondPost from './pages/posts/SecondPost';
 import ThirdPost from './pages/posts/ThirdPost';
 import FourthPost from './pages/posts/FourthPost';
 import FifthPost from './pages/posts/FifthPost';
+import SixthPost from './pages/posts/SixthPost';
 import { PostProps } from './pages/posts/helper';
 
 import '@mantine/core/styles.css';
@@ -79,6 +80,13 @@ const posts: Post[] = [
     date: new Date(2026, 0, 17), // January 17, 2026
     icon: IconBabyCarriage,
     component: FifthPost,
+  },
+  {
+    id: 'post-6',
+    title: 'Coin Partitions (Project Euler #78)',
+    date: new Date(2026, 0, 18), // January 18, 2026
+    icon: IconCoins,
+    component: SixthPost,
   },
 ];
 

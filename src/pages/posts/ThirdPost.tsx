@@ -30,7 +30,7 @@ function ThirdPost({ date }: PostProps): JSX.Element {
             </Text>
 
             <Text>
-                Let <Latex>$a = (x_a, y_a), b = (x_b, y_b), x_3 = (x_c, y_c)$</Latex> be
+                Let <Latex>$a = (x_a, y_a), b = (x_b, y_b), c = (x_c, y_c)$</Latex> be
                 the three points. We choose to fix <Latex>$c$</Latex> and
                 choose to move <Latex>$a$</Latex> and <Latex>$b$</Latex>.
                 In the final algorithm, we'll switch which point we fix and which points we move.
@@ -76,7 +76,7 @@ function ThirdPost({ date }: PostProps): JSX.Element {
 
             <Text>
                 It is possible to take the derivative of this with respect to <Latex>$t$ and $v$</Latex> and set it equal to zero.
-                However, we quicky find that
+                However, we quickly find that
                 a closed-form analytical solution becomes hairy. Thankfully, there are
                 numerical approximations that we can do in code, although the pure mathematicians among us may roll
                 their eyes. Below is an example Python program of the final algorithm that includes what we mentioned above. We switch

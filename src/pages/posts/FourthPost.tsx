@@ -53,7 +53,7 @@ function FourthPost({ date }: PostProps): JSX.Element {
                     Can we do better? Let $x$, $y$, and $z$ represent the vectors of the three vertices of an equilateral triangle
                     relative to its centroid at $(l, m)$. In other words, the vertices of the equilateral triangle are $x + (l, m)$,
                     $y + (l, m)$, and $z + (l, m)$. It follows that $x$, $y$, and $z$ uniquely depend on $\theta$ and $r$. We pair
-                    up $x$ with $a$, $y$ with $b$, and $z$ with $c$ (in our final algorithm we need make sure that assignments
+                    up $x$ with $a$, $y$ with $b$, and $z$ with $c$ (in our final algorithm we need to make sure that assignments
                     from $x$/$y$/$z$ to $a$/$b$/$c$ are covered). The sum of the distance between the points is:
                 </Latex>
             </Text>
@@ -70,7 +70,7 @@ function FourthPost({ date }: PostProps): JSX.Element {
             <Text>
                 <Latex>In other words, we want to find the optimal sum of distances of $(l, m)$ from the points represented
                 by the vectors $a - x$, $b - y$, and $c - z$. This is simply the geometric median, and there is
-                a lovely algorithm to find it</Latex>, <Anchor href="https://en.wikipedia.org/wiki/Geometric_median" target="_blank" rel="noopener noreferrer">Weiszfeld's algorithm</Anchor>.
+                a lovely algorithm to find it</Latex>, <Anchor c="blue" href="https://en.wikipedia.org/wiki/Geometric_median" target="_blank" rel="noopener noreferrer">Weiszfeld's algorithm</Anchor>.
             </Text>
 
             <Text>
