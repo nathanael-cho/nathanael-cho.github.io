@@ -51,6 +51,7 @@ function AboutMe(): JSX.Element {
                     <Anchor c="blue" href="mailto:nathanael.a.cho@gmail.com">nathanael.a.cho@gmail.com</Anchor>
                     <Anchor c="blue" href="https://www.linkedin.com/in/nathanael-a-cho/" target="_blank" rel="noopener noreferrer">LinkedIn</Anchor>
                     <Anchor c="blue" href="https://github.com/nathanael-cho" target="_blank" rel="noopener noreferrer">GitHub</Anchor>
+                    <Anchor c="blue" href="https://soundcloud.com/n-a-cho" target="_blank" rel="noopener noreferrer">SoundCloud</Anchor>
                 </Stack>
             </Stack>
         </Container>
