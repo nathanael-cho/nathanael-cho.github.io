@@ -22,7 +22,7 @@ function AboutMe(): JSX.Element {
                     and <Anchor c="blue" href="https://gospel.biblesforamerica.org/the-big-question/" target="_blank" rel="noopener noreferrer">His purpose</Anchor>:
                     to gain a corporate expression among man
                     by coming into us as the Spirit to be our life and everything,
-                    and to bring His kingdom to earth.
+                    and to bring His kingdom to the earth.
                 </Text>
                 <Text>
                     I love to code! When I took my first computer science class, I had a rough time,
