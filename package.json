@@ -17,6 +17,9 @@
     "react-syntax-highlighter": "^16.1.0"
   },
   "scripts": {
+    "build:wasm": "node scripts/build-wasm.js",
+    "prestart": "node scripts/build-wasm.js",
+    "prebuild": "node scripts/build-wasm.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -52,6 +55,7 @@
     "postcss": "^8.4.41",
     "postcss-preset-mantine": "^1.17.0",
     "postcss-simple-vars": "^7.0.1",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "wabt": "^1.0.39"
   }
 }
