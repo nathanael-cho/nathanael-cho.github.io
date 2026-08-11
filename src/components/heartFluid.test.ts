@@ -19,8 +19,6 @@ function activeCells(fluid: Fluid, chamber: string): number {
     return found ? found.cells.filter((cell) => cell.active).length : 0;
 }
 
-jest.setTimeout(60000);
-
 test('no cell can be drawn wider than the vessel carrying it', () => {
     // The blood used to be routed along its own copy of each vessel's path,
     // with a hand-tuned spread, and several vessels ended up with cells hanging

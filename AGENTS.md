@@ -7,12 +7,14 @@ It uses Mantine v7 for UI, renders posts from a hash-based route table, and
 deploys to GitHub Pages at https://nathanael-cho.github.io.
 
 ### Key Technologies
-- React 18 + TypeScript (Create React App / `react-scripts`)
+- React 18 + TypeScript, built with Vite; tests run on Vitest
 - Mantine UI v7 (`@mantine/core`, `@mantine/hooks`) and `@tabler/icons-react`
 - `react-latex` for mathematics, `react-syntax-highlighter` for code blocks
 - `wabt` to assemble hand-written WebAssembly for one of the simulations
 
 ### Project Structure
+- `index.html` — the page shell, at the project root because Vite treats it as
+  the build entry point and injects the bundle into it
 - `src/App.tsx` — the shell: header, navbar, routing, and the `posts` table
 - `src/index.tsx` — Mantine theme (the `brand-light` / `brand-dark` palettes)
 - `src/pages/` — `Home`, `AboutMe`
@@ -27,16 +29,23 @@ and picks a component out of the `posts` array, so every post is `#post-N`.
 ## Commands
 
 ```bash
-npm start          # dev server on :3000 (runs build:wasm first)
-npm run build      # production build into build/ (runs build:wasm first)
+npm start          # Vite dev server on :3000 (runs build:wasm first)
+npm run lint       # ESLint over the whole project
+npm run build      # lint, typecheck, then production build into build/
+npm run preview    # serve the production build locally
+npm test           # run the test suite once
+npm run test:watch # ...or in watch mode
+npm run typecheck  # tsc --noEmit on its own
 npm run build:wasm # assemble public/wasm_files/water.wat -> water.wasm
 npm run deploy     # build, then publish build/ to GitHub Pages
-npx tsc --noEmit -p tsconfig.json          # typecheck without emitting
-CI=true npx react-scripts test --watchAll=false   # run tests once
 ```
 
-`react-scripts test` defaults to watch mode; always pass `CI=true` and
-`--watchAll=false` in a non-interactive session or it will hang.
+`npm test` is `vitest run`, which exits when it finishes — it is `test:watch`
+that stays resident, so never use that one in a non-interactive session.
+
+Vite transpiles TypeScript with esbuild and does **not** type-check, which is
+why `npm run build` runs `npm run lint && tsc --noEmit` first. Keep both in
+front of it: between them they catch what the bundler will happily ignore.
 
 ## Rules
 
@@ -48,7 +57,12 @@ CI=true npx react-scripts test --watchAll=false   # run tests once
 2. **JavaScript dependencies**: `npm install`. Keep `package-lock.json` in the
    commit.
 
-3. **Do not edit `build/`** — it is generated output and is git-ignored.
+3. **Do not edit `build/`** — it is generated output and is git-ignored. Vite
+   is configured to write there rather than its default `dist`, because that is
+   what `npm run deploy` publishes.
+
+4. **The package is an ES module** (`"type": "module"`). Node scripts that use
+   `require` need a `.cjs` extension — `scripts/build-wasm.cjs` is the one.
 
 ## Adding a blog post
 
@@ -82,7 +96,9 @@ shape, and new ones should too:
 - Drive everything from a single `requestAnimationFrame` loop inside one
   `useEffect`. Hold the model, and anything else that must survive a re-render,
   in refs; mirror rapidly-changing React state into a ref so the loop can read
-  it without being torn down and restarted.
+  it without being torn down and restarted. Do that mirroring **inside an
+  effect**, never during render — assigning to `ref.current` while rendering is
+  an impurity, and `react-hooks/refs` will reject it.
 - Clamp the per-frame timestep. A backgrounded tab hands you a multi-second
   delta on return, and integrating that in one step blows up the model.
 - Only push to React state at a human rate (once per beat, per event), never

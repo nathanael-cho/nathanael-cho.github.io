@@ -36,10 +36,15 @@ export default function HeartSimulation(): JSX.Element {
     const [running, setRunning] = useState(true);
     const [speed, setSpeed] = useState('1');
 
+    // The animation loop reads these instead of the state itself, so that
+    // changing either does not tear the loop down and restart it. Mirroring in
+    // an effect rather than during render keeps the render pure.
     const runningRef = useRef(running);
-    runningRef.current = running;
     const speedRef = useRef(1);
-    speedRef.current = Number(speed);
+    useEffect(() => {
+        runningRef.current = running;
+        speedRef.current = Number(speed);
+    }, [running, speed]);
 
     const colorScheme = useComputedColorScheme('light');
     const isDark = colorScheme === 'dark';

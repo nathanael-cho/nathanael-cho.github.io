@@ -509,6 +509,15 @@ export function drawHeart(
     ctx.lineWidth = Math.max(unit * 0.005, 1);
     ctx.stroke();
 
+    // Everything painted onto the muscle — the groove round the outside, the
+    // septum, the coronary arteries — is clipped to the outline. Each is a
+    // hand-drawn curve that has to stop exactly at a border it knows nothing
+    // about, and each was overrunning it; clipping makes that impossible
+    // rather than something to re-check whenever the outline moves.
+    ctx.save();
+    heartOutlinePath(ctx, at);
+    ctx.clip();
+
     // The coronary sulcus: the groove round the outside that separates the
     // atria above from the ventricles below.
     ctx.beginPath();
@@ -546,6 +555,8 @@ export function drawHeart(
         ctx.lineWidth = Math.max(unit * 0.011, 1.6);
         ctx.stroke();
     }
+
+    ctx.restore();
 
     // The outflow tracts go down behind the cavities, so each one appears to
     // emerge from its ventricle rather than to have been pushed into it.

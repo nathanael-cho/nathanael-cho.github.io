@@ -22,8 +22,6 @@ function steadyState(overrides: Partial<HeartControls> = {}): Circulation {
     return sim;
 }
 
-jest.setTimeout(60000);
-
 describe('conservation and stability', () => {
     test('blood volume is conserved', () => {
         const sim = new Circulation();
