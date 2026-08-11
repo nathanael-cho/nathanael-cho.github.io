@@ -11,10 +11,9 @@ import {
   Text,
   useComputedColorScheme,
   useMantineColorScheme,
-  useMantineTheme,
 } from '@mantine/core';
 import { useDisclosure, useHash } from '@mantine/hooks';
-import { IconArrowLeft, IconArrowRight, IconBabyCarriage, IconChefHat, IconCoins, IconMoon, IconSnowflake, IconSun, IconTriangle, TablerIcon } from '@tabler/icons-react';
+import { IconArrowLeft, IconArrowRight, IconBabyCarriage, IconChefHat, IconCoins, IconHeartbeat, IconMoon, IconSnowflake, IconSun, IconTriangle, TablerIcon } from '@tabler/icons-react';
 
 import Home from './pages/Home';
 import AboutMe from './pages/AboutMe';
@@ -25,6 +24,7 @@ import FourthPost from './pages/posts/FourthPost';
 import FifthPost from './pages/posts/FifthPost';
 import SixthPost from './pages/posts/SixthPost';
 import SeventhPost from './pages/posts/SeventhPost';
+import EighthPost from './pages/posts/EighthPost';
 import { PostProps } from './pages/posts/helper';
 
 import '@mantine/core/styles.css';
@@ -95,6 +95,13 @@ const posts: Post[] = [
     date: new Date(2026, 7, 8), // August 8, 2026
     icon: IconSnowflake,
     component: SeventhPost,
+  },
+  {
+    id: 'post-8',
+    title: 'Heart Diagram',
+    date: new Date(2026, 7, 10), // August 10, 2026
+    icon: IconHeartbeat,
+    component: EighthPost,
   },
 ];
 
@@ -180,10 +187,11 @@ const App = (): JSX.Element => {
   const { setColorScheme } = useMantineColorScheme();
   const computedColorScheme = useComputedColorScheme('light');
 
-  const theme = useMantineTheme();
   const isDark = computedColorScheme === 'dark';
-  const headerBg = isDark ? theme.colors['brand-dark'][6] : theme.colors['brand-light'][3];
-  const headerTextColor = isDark ? theme.colors['brand-light'][3] : theme.colors['brand-dark'][6];
+  // Mantine publishes every theme colour as a CSS variable, so the header can
+  // name the shades it wants without reaching into the theme object.
+  const headerBg = isDark ? 'var(--mantine-color-brand-dark-6)' : 'var(--mantine-color-brand-light-3)';
+  const headerTextColor = isDark ? 'var(--mantine-color-brand-light-3)' : 'var(--mantine-color-brand-dark-6)';
 
   const toggleColorScheme = () => {
     setColorScheme(isDark ? 'light' : 'dark');

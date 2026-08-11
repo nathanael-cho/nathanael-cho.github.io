@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Stack, Text } from '@mantine/core';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { coy } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import coy from 'react-syntax-highlighter/dist/cjs/styles/prism/coy';
 import Latex from 'react-latex';
 
 import { postFramework, PostProps } from './helper';
