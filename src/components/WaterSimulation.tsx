@@ -188,15 +188,19 @@ export default function WaterSimulation(): JSX.Element {
   const [error, setError] = useState<string | null>(null);
   const [ready, setReady] = useState(false); // true once the first frame has painted
   const [snow, setSnow] = useState(true);
+  // Mirrored for the animation loop to read; assigned in an effect rather than
+  // during render so the render stays pure.
   const snowRef = useRef(snow);
-  snowRef.current = snow;
+  useEffect(() => {
+    snowRef.current = snow;
+  }, [snow]);
 
   const wasmRef = useRef<WaterExports | null>(null);
 
   // Instantiate the WASM module once.
   useEffect(() => {
     let cancelled = false;
-    fetch(`${process.env.PUBLIC_URL}/wasm_files/water.wasm`)
+    fetch(`${import.meta.env.BASE_URL}wasm_files/water.wasm`)
       .then((res) => res.arrayBuffer())
       .then((bytes) => WebAssembly.instantiate(bytes, {}))
       .then(({ instance }) => {
